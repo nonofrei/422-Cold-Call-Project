@@ -1,10 +1,12 @@
 import tkinter as tk
 import random
+import threading
 
 remove1='1'
 remove2='2'
 remove3='3'
 remove4='4'
+
 flag1='q'
 flag2='w'
 flag3='e'
@@ -16,6 +18,9 @@ class UserInterface(object):
         self.nameList=nameList
         self.restList=restList
         self.fileMode=False
+        self.mutex = threading.Lock()
+        self.flagLock=threading.Lock()
+        self.removedName=''
         
     def random_select(self):
         #need ramdom algorithm here
@@ -25,63 +30,87 @@ class UserInterface(object):
     def removeAndAddStudent_1(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        removedName=self.nameList[0]
+        self.mutex.acquire()
+        self.removedName=self.nameList[0]
         self.nameList[0]=self.nameList[1]
         self.nameList[1]=self.nameList[2]
         self.nameList[2]=self.nameList[3]
         random_name=self.random_select()
         self.nameList[3]=random_name
         self.restList.remove(random_name)
-        self.restList.append(removedName)
+        self.restList.append(self.removedName)
         
         self.tempList[0].set(self.nameList[0])
         self.tempList[1].set(self.nameList[1])
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
+        
+        if self.flagLock.locked():
+            self.flagLock.release()
+        self.mutex.release()
 
     def removeAndAddStudent_2(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        removedName=self.nameList[1]
+        self.mutex.acquire()
+        self.removedName=self.nameList[1]
         self.nameList[1]=self.nameList[2]
         self.nameList[2]=self.nameList[3]
         random_name=self.random_select()
         self.nameList[3]=random_name
         self.restList.remove(random_name)
-        self.restList.append(removedName)
+        self.restList.append(self.removedName)
         
         self.tempList[1].set(self.nameList[1])
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
+        
+        if self.flagLock.locked():
+            self.flagLock.release()
+        self.mutex.release()
 
     def removeAndAddStudent_3(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        removedName=self.nameList[2]
+        self.mutex.acquire()
+        self.removedName=self.nameList[2]
         self.nameList[2]=self.nameList[3]
         random_name=self.random_select()
         self.nameList[3]=random_name
         self.restList.remove(random_name)
-        self.restList.append(removedName)
+        self.restList.append(self.removedName)
         
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
+        
+        if self.flagLock.locked():
+            self.flagLock.release()
+        self.mutex.release()
+        
 
     def removeAndAddStudent_4(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        removedName=self.nameList[3]
+        self.mutex.acquire()
+        self.removedName=self.nameList[3]
         random_name=self.random_select()
         self.nameList[3]=random_name
         self.restList.remove(random_name)
-        self.restList.append(removedName)
+        self.restList.append(self.removedName)
         
         self.tempList[3].set(random_name)
         
+        if self.flagLock.locked():
+            self.flagLock.release()
+        self.mutex.release()
+
+
     #react qwer (*within 1 second after remove), mark flag symbol for removed student
     # qwer both are flag, so 1 func is enough?
     def flag(self,event):
-        print("flag!")
+        if self.flagLock.locked()==False:
+            print("flag name: ",self.removedName)
+            self.flagLock.acquire()
 
     #initial view
     def firstInterface(self):
@@ -96,6 +125,7 @@ class UserInterface(object):
         
     #tkinter window have been closed, now in termial
     def fileInterface(self):
+        
         while True:
             command=input('Input or output file: ')
             commandList=command.split()
@@ -116,7 +146,7 @@ class UserInterface(object):
     #cold call view
     def CCinterface(self):
         self.app = tk.Tk()
-        
+        self.flagLock.acquire()
         tempList=[]
         for i in self.nameList:
             tempName=tk.StringVar()
@@ -133,7 +163,7 @@ class UserInterface(object):
         self.app.bind(remove1,self.removeAndAddStudent_1)
 
         tk.Label(self.app, text=' ').pack(side='left')
-		
+        
         theLabel_2 = tk.Label(self.app, textvariable=self.tempList[1])
         theLabel_2.pack(side='left')
         self.app.bind(remove2,self.removeAndAddStudent_2)
@@ -154,20 +184,11 @@ class UserInterface(object):
         self.app.bind(flag2,self.flag)
         self.app.bind(flag3,self.flag)
         self.app.bind(flag4,self.flag)
-		
+        
         self.app.mainloop()
         
         print('done')
 
 
 
-		
-		
-
-
-
-
-
-
-
-
+        
