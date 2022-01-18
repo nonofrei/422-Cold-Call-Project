@@ -10,7 +10,6 @@ def main():
     
     interface=UserInterface(studentList,restList)
     interface.firstInterface()
-    #!!!interface.CCinterface() must be the last step of main(), because before the cold call windows close, not code run behind the line self.app.mainloop() in func CCinterface()
 
 if __name__ == '__main__':
     main()
