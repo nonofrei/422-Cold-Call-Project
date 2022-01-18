@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+import time
 
 remove1='1'
 remove2='2'
@@ -10,6 +11,9 @@ flag1='q'
 flag2='w'
 flag3='e'
 flag4='r'
+
+selected_student = '0'
+time_since_selected = time.time()
 
 class UserInterface(object):
 
@@ -27,6 +31,11 @@ class UserInterface(object):
     def removeAndAddStudent_1(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
+
+        global selected_student
+        selected_student = 'q'
+        global time_since_selected
+        time_since_selected = time.time()
         
         self.removedName=self.nameList[0]
         self.nameList[0]=self.nameList[1]
@@ -47,7 +56,12 @@ class UserInterface(object):
     def removeAndAddStudent_2(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        
+
+        global selected_student
+        selected_student = 'w'
+        global time_since_selected
+        time_since_selected = time.time()
+
         self.removedName=self.nameList[1]
         self.nameList[1]=self.nameList[2]
         self.nameList[2]=self.nameList[3]
@@ -65,7 +79,12 @@ class UserInterface(object):
     def removeAndAddStudent_3(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        
+
+        global selected_student
+        selected_student = 'e'
+        global time_since_selected
+        time_since_selected = time.time()
+
         self.removedName=self.nameList[2]
         self.nameList[2]=self.nameList[3]
         random_name=self.random_select()
@@ -83,6 +102,11 @@ class UserInterface(object):
     def removeAndAddStudent_4(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
+
+        global selected_student
+        selected_student = 'r'
+        global time_since_selected
+        time_since_selected = time.time()
         
         self.removedName=self.nameList[3]
         random_name=self.random_select()
@@ -91,13 +115,13 @@ class UserInterface(object):
         self.restList.append(self.removedName)
         
         self.tempList[3].set(random_name)
-        
 
-
-    #react qwer (*within 1 second after remove), mark flag symbol for removed student
-    # qwer both are flag, so 1 func is enough?
     def flag(self,event):
-        print("flag:",self.removedName)
+        # check flag matches removed student and occurred within one second
+        match_flag = (event.char == selected_student)
+        time_difference = time.time() - time_since_selected
+        if time_difference <= 1 and match_flag:
+            print("flag:",self.removedName)
         
     def inputFile(self,entry):
         print('Input file:',entry.get())
