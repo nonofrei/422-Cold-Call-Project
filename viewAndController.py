@@ -1,6 +1,5 @@
 import tkinter as tk
 import random
-import threading
 
 remove1='1'
 remove2='2'
@@ -30,7 +29,7 @@ class UserInterface(object):
     def removeAndAddStudent_1(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        self.mutex.acquire()
+        
         self.removedName=self.nameList[0]
         self.nameList[0]=self.nameList[1]
         self.nameList[1]=self.nameList[2]
@@ -45,14 +44,12 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
         
-        if self.flagLock.locked():
-            self.flagLock.release()
-        self.mutex.release()
+        
 
     def removeAndAddStudent_2(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        self.mutex.acquire()
+        
         self.removedName=self.nameList[1]
         self.nameList[1]=self.nameList[2]
         self.nameList[2]=self.nameList[3]
@@ -65,14 +62,12 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
         
-        if self.flagLock.locked():
-            self.flagLock.release()
-        self.mutex.release()
+        
 
     def removeAndAddStudent_3(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        self.mutex.acquire()
+        
         self.removedName=self.nameList[2]
         self.nameList[2]=self.nameList[3]
         random_name=self.random_select()
@@ -83,15 +78,14 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
         
-        if self.flagLock.locked():
-            self.flagLock.release()
-        self.mutex.release()
+       
+       
         
 
     def removeAndAddStudent_4(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
-        self.mutex.acquire()
+        
         self.removedName=self.nameList[3]
         random_name=self.random_select()
         self.nameList[3]=random_name
@@ -100,17 +94,12 @@ class UserInterface(object):
         
         self.tempList[3].set(random_name)
         
-        if self.flagLock.locked():
-            self.flagLock.release()
-        self.mutex.release()
 
 
     #react qwer (*within 1 second after remove), mark flag symbol for removed student
     # qwer both are flag, so 1 func is enough?
     def flag(self,event):
-        if self.flagLock.locked()==False:
-            print("flag name: ",self.removedName)
-            self.flagLock.acquire()
+        print("flag!")
 
     #initial view
     def firstInterface(self):
@@ -146,7 +135,7 @@ class UserInterface(object):
     #cold call view
     def CCinterface(self):
         self.app = tk.Tk()
-        self.flagLock.acquire()
+
         tempList=[]
         for i in self.nameList:
             tempName=tk.StringVar()
@@ -180,14 +169,15 @@ class UserInterface(object):
         theLabel_4.pack(side='left')
         self.app.bind(remove4,self.removeAndAddStudent_4)
         
+        buttonBack=tk.Button(self.app,text='Back',command=lambda:[self.app.destroy(),self.firstInterface()])
+        buttonBack.pack()
+        
         self.app.bind(flag1,self.flag)
         self.app.bind(flag2,self.flag)
         self.app.bind(flag3,self.flag)
         self.app.bind(flag4,self.flag)
         
         self.app.mainloop()
-        
-        print('done')
 
 
 
