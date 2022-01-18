@@ -18,7 +18,6 @@ class UserInterface(object):
         self.restList=restList
         self.fileMode=False
         self.removedName=''
-        self.entry=''
         
     def random_select(self):
         #need ramdom algorithm here
@@ -98,14 +97,12 @@ class UserInterface(object):
     #react qwer (*within 1 second after remove), mark flag symbol for removed student
     # qwer both are flag, so 1 func is enough?
     def flag(self,event):
-        print("flag!")
+        print("flag:",self.removedName)
         
     def inputFile(self,entry):
-        self.entry=entry.get()
         print('Input file:',entry.get())
         
     def outputFile(self,entry):
-        
         print('Output file:',entry.get())
 
     #initial view
@@ -186,6 +183,3 @@ class UserInterface(object):
         
         self.app.mainloop()
 
-
-
-        
