@@ -17,8 +17,8 @@ class UserInterface(object):
         self.nameList=nameList
         self.restList=restList
         self.fileMode=False
-        
         self.removedName=''
+        self.entry=''
         
     def random_select(self):
         #need ramdom algorithm here
@@ -99,10 +99,21 @@ class UserInterface(object):
     # qwer both are flag, so 1 func is enough?
     def flag(self,event):
         print("flag!")
+        
+    def inputFile(self,entry):
+        self.entry=entry.get()
+        print('Input file:',entry.get())
+        
+    def outputFile(self,entry):
+        
+        print('Output file:',entry.get())
+        
+    
 
     #initial view
     def firstInterface(self):
         root=tk.Tk()
+        root.geometry('+0+0')
         root.wm_attributes('-topmost',1)
         root.title('Model select')
         button_1=tk.Button(root,text='Cold Call Assist',command=lambda:[root.destroy(),self.CCinterface()])
@@ -113,28 +124,25 @@ class UserInterface(object):
         
     #tkinter window have been closed, now in termial
     def fileInterface(self):
+        root=tk.Tk()
+        root.geometry('+0+0')
+        root.wm_attributes('-topmost',1)
+        root.title('File operation')
+        entry = tk.Entry(root, bd =5)
         
-        while True:
-            command=input('Input or output file: ')
-            commandList=command.split()
-            if len(commandList)==2:
-                if commandList[0]=='input' or commandList[0]=='output':
-                    if commandList[0]=='input':
-                        print('Input file',commandList[1])
-                    else:
-                        print('Output file',commandList[1])
-                else:
-                    print('Invalid command')
-            elif len(commandList)==1:
-                if commandList[0]=='quit':
-                    break
-                else:
-                    print('Invalid command')
+        entry.grid(row=0,column=1)
+        button_1=tk.Button(root,text='Input',command=lambda:self.inputFile(entry))
+        button_1.grid(row=1,column=0)
+        button_2=tk.Button(root,text='Output',command=lambda:self.outputFile(entry))
+        button_2.grid(row=1,column=2)
+        button_3=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.firstInterface()])
+        button_3.grid(row=2,column=1)
+        
 
     #cold call view
     def CCinterface(self):
         self.app = tk.Tk()
-
+        self.app.geometry('+0+0')
         tempList=[]
         for i in self.nameList:
             tempName=tk.StringVar()
@@ -144,32 +152,33 @@ class UserInterface(object):
         
         self.app.wm_attributes('-topmost',1)
         self.app.title('Cold-Call Assist')
-        tk.Label(self.app, text='Next students:').pack(side='left')
+        tk.Label(self.app, text='Next students:').grid(row=0,column=0)
 
         theLabel_1 = tk.Label(self.app, textvariable=self.tempList[0])
-        theLabel_1.pack(side='left')
+        theLabel_1.grid(row=0,column=1)
         self.app.bind(remove1,self.removeAndAddStudent_1)
 
-        tk.Label(self.app, text=' ').pack(side='left')
+        tk.Label(self.app, text=' ').grid(row=0,column=2)
         
         theLabel_2 = tk.Label(self.app, textvariable=self.tempList[1])
-        theLabel_2.pack(side='left')
+        theLabel_2.grid(row=0,column=3)
         self.app.bind(remove2,self.removeAndAddStudent_2)
 
-        tk.Label(self.app, text=' ').pack(side='left')
+        tk.Label(self.app, text=' ').grid(row=0,column=4)
 
         theLabel_3 = tk.Label(self.app, textvariable=self.tempList[2])
-        theLabel_3.pack(side='left')
+        theLabel_3.grid(row=0,column=5)
         self.app.bind(remove3,self.removeAndAddStudent_3)
 
-        tk.Label(self.app, text=' ').pack(side='left')
+        tk.Label(self.app, text=' ').grid(row=0,column=6)
 
         theLabel_4 = tk.Label(self.app, textvariable=self.tempList[3])
-        theLabel_4.pack(side='left')
+        theLabel_4.grid(row=0,column=7)
         self.app.bind(remove4,self.removeAndAddStudent_4)
+    
         
         buttonBack=tk.Button(self.app,text='Back',command=lambda:[self.app.destroy(),self.firstInterface()])
-        buttonBack.pack(side='down')
+        buttonBack.grid(row=1,sticky='w')
         
         self.app.bind(flag1,self.flag)
         self.app.bind(flag2,self.flag)
