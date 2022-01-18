@@ -17,8 +17,7 @@ class UserInterface(object):
         self.nameList=nameList
         self.restList=restList
         self.fileMode=False
-        self.mutex = threading.Lock()
-        self.flagLock=threading.Lock()
+        
         self.removedName=''
         
     def random_select(self):
@@ -170,7 +169,7 @@ class UserInterface(object):
         self.app.bind(remove4,self.removeAndAddStudent_4)
         
         buttonBack=tk.Button(self.app,text='Back',command=lambda:[self.app.destroy(),self.firstInterface()])
-        buttonBack.pack()
+        buttonBack.pack(side='down')
         
         self.app.bind(flag1,self.flag)
         self.app.bind(flag2,self.flag)
