@@ -107,8 +107,6 @@ class UserInterface(object):
     def outputFile(self,entry):
         
         print('Output file:',entry.get())
-        
-    
 
     #initial view
     def firstInterface(self):
@@ -137,6 +135,7 @@ class UserInterface(object):
         button_2.grid(row=1,column=2)
         button_3=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.firstInterface()])
         button_3.grid(row=2,column=1)
+        root.mainloop()
         
 
     #cold call view
