@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-import time
+from time import *
 
 remove1='1'
 remove2='2'
@@ -12,8 +12,6 @@ flag2='w'
 flag3='e'
 flag4='r'
 
-time_since_selected = time.time()
-
 class UserInterface(object):
 
     def __init__(self, nameList,restList):
@@ -21,6 +19,10 @@ class UserInterface(object):
         self.restList=restList
         self.fileMode=False
         self.removedName=''
+
+        # for 1 sec flagging and avoiding double flagging
+        self.keypress_timer = time()
+        self.can_flag = True
         
     def random_select(self):
         #need ramdom algorithm here
@@ -31,8 +33,9 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global time_since_selected
-        time_since_selected = time.time()
+        # 1 sec delay and allow flagging
+        self.keypress_timer = time()
+        self.can_flag = True
         
         self.removedName=self.nameList[0]
         self.nameList[0]=self.nameList[1]
@@ -54,8 +57,9 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global time_since_selected
-        time_since_selected = time.time()
+        # 1 sec delay and allow flagging
+        self.keypress_timer = time()
+        self.can_flag = True
 
         self.removedName=self.nameList[1]
         self.nameList[1]=self.nameList[2]
@@ -75,8 +79,9 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global time_since_selected
-        time_since_selected = time.time()
+        # 1 sec delay and allow flagging
+        self.keypress_timer = time()
+        self.can_flag = True
 
         self.removedName=self.nameList[2]
         self.nameList[2]=self.nameList[3]
@@ -96,8 +101,9 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global time_since_selected
-        time_since_selected = time.time()
+        # 1 sec delay and allow flagging
+        self.keypress_timer = time()
+        self.can_flag = True
         
         self.removedName=self.nameList[3]
         random_name=self.random_select()
@@ -108,10 +114,14 @@ class UserInterface(object):
         self.tempList[3].set(random_name)
 
     def flag(self,event):
-        # check flag matches removed student and occurred within one second
-        time_difference = time.time() - time_since_selected
-        if time_difference <= 1:
+        time_difference = time() - self.keypress_timer
+
+        # within 1 sec and can flag
+        if time_difference <= 1 and self.can_flag:
             print("flag:",self.removedName)
+
+        # no more flags till next student removed
+        self.can_flag = False
         
     def inputFile(self,entry):
         print('Input file:',entry.get())
