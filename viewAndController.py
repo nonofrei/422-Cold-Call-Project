@@ -179,9 +179,9 @@ class UserInterface(object):
         root.title('Warning')
         theLabel = tk.Label(root,fg='red',text='Warning! Already existing students data, do you want to cover it?')
         theLabel.pack()
-        button_1=tk.Button(root,text='Continue',command=lambda:[root.destroy()])
+        button_1=tk.Button(root,text='Continue',command=lambda:[root.destroy(),self.clearData(),self.inputFile(self.entry)])
         button_1.pack()
-        button_2=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.clearData(),self.inputFile(self.entry)])
+        button_2=tk.Button(root,text='Back',command=lambda:[root.destroy()])
         button_2.pack()
 
     #cold call view
