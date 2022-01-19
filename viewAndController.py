@@ -14,10 +14,14 @@ flag4='r'
 
 class UserInterface(object):
 
-    def __init__(self, nameList,restList):
+    def __init__(self, nameList,restList,data):
         self.nameList=nameList
         self.restList=restList
         self.fileMode=False
+        if data==True:
+            self.haveData=True
+        else:
+            self.haveData=False
         self.removedName=''
 
         # for 1 sec flagging and avoiding double flagging
@@ -93,10 +97,8 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2])
         self.tempList[3].set(random_name)
         
-       
-       
         
-
+        
     def removeAndAddStudent_4(self,event):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
@@ -124,10 +126,22 @@ class UserInterface(object):
         self.can_flag = False
         
     def inputFile(self,entry):
-        print('Input file:',entry.get())
+        if self.haveData==False:
+            print('Input file:',entry.get())
+            self.haveData=True
+        else:
+            self.warningInterface()
+        
         
     def outputFile(self,entry):
         print('Output file:',entry.get())
+        self.haveData=False
+        
+    
+        
+    def clearData(self):
+        print('Clear all student data')
+        self.haveData=False
 
     #initial view
     def firstInterface(self):
@@ -137,7 +151,7 @@ class UserInterface(object):
         root.title('Model select')
         button_1=tk.Button(root,text='Cold Call Assist',command=lambda:[root.destroy(),self.CCinterface()])
         button_1.grid(row=0,column=0)
-        button_2=tk.Button(root,text='Input or output file',command=lambda:[root.destroy(),self.fileInterface()])
+        button_2=tk.Button(root,text='File operation',command=lambda:[root.destroy(),self.fileInterface()])
         button_2.grid(row=1,column=0)
         root.mainloop()
         
@@ -148,16 +162,27 @@ class UserInterface(object):
         root.wm_attributes('-topmost',1)
         root.title('File operation')
         entry = tk.Entry(root, bd =5)
-        
         entry.grid(row=0,column=1)
-        button_1=tk.Button(root,text='Input',command=lambda:self.inputFile(entry))
+        self.entry=entry
+        button_1=tk.Button(root,text='Input',command=lambda:self.inputFile(self.entry))
         button_1.grid(row=1,column=0)
-        button_2=tk.Button(root,text='Output',command=lambda:self.outputFile(entry))
+        button_2=tk.Button(root,text='Output',command=lambda:self.outputFile(self.entry))
         button_2.grid(row=1,column=2)
         button_3=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.firstInterface()])
         button_3.grid(row=2,column=1)
         root.mainloop()
-        
+    
+    def warningInterface(self):
+        root=tk.Tk()
+        root.geometry('+0+0')
+        root.wm_attributes('-topmost',1)
+        root.title('Warning')
+        theLabel = tk.Label(root,fg='red',text='Warning! Already existing students data, do you want to cover it?')
+        theLabel.pack()
+        button_1=tk.Button(root,text='Continue',command=lambda:[root.destroy()])
+        button_1.pack()
+        button_2=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.clearData(),self.inputFile(self.entry)])
+        button_2.pack()
 
     #cold call view
     def CCinterface(self):

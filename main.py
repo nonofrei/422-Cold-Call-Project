@@ -8,7 +8,10 @@ def main():
     studentList=['Maria Diego', 'Anna Cavendish', 'Yunfeng Zhang', 'Aniyah Jackson']
     restList=['name_1', 'name_2', 'name_3', 'name_4','name_5','name_6','name_7','name_8','name_9']
     
-    interface=UserInterface(studentList,restList)
+    #existData tells view is there data in database or not when user open program
+    #existData=True
+    existData=False
+    interface=UserInterface(studentList,restList,existData)
     interface.firstInterface()
 
 if __name__ == '__main__':
