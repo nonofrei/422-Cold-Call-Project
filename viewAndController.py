@@ -12,7 +12,6 @@ flag2='w'
 flag3='e'
 flag4='r'
 
-selected_student = '0'
 time_since_selected = time.time()
 
 class UserInterface(object):
@@ -32,8 +31,6 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global selected_student
-        selected_student = 'q'
         global time_since_selected
         time_since_selected = time.time()
         
@@ -57,8 +54,6 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global selected_student
-        selected_student = 'w'
         global time_since_selected
         time_since_selected = time.time()
 
@@ -80,8 +75,6 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global selected_student
-        selected_student = 'e'
         global time_since_selected
         time_since_selected = time.time()
 
@@ -103,8 +96,6 @@ class UserInterface(object):
         #need database(model) part, save remove information
         #need insert the removed name back to restList
 
-        global selected_student
-        selected_student = 'r'
         global time_since_selected
         time_since_selected = time.time()
         
@@ -118,9 +109,8 @@ class UserInterface(object):
 
     def flag(self,event):
         # check flag matches removed student and occurred within one second
-        match_flag = (event.char == selected_student)
         time_difference = time.time() - time_since_selected
-        if time_difference <= 1 and match_flag:
+        if time_difference <= 1:
             print("flag:",self.removedName)
         
     def inputFile(self,entry):
