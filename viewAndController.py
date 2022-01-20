@@ -13,6 +13,7 @@ flag2='w'
 flag3='e'
 flag4='r'
 
+
 class UserInterface(object):
 
     def __init__(self, nameList,restList,data):
@@ -126,14 +127,17 @@ class UserInterface(object):
         # no more flags till next student removed
         self.can_flag = False
         
-    def inputFile(self,entry):
+    def inputFile(self):
         if self.haveData==False:
             ImportFile()
             self.haveData=True
         else:
             self.warningInterface()
         
-        
+    def confirmInput(self):
+        ImportFile()
+        self.haveData=True
+    
     def outputFile(self,entry):
         print('Output file:',entry.get())
         self.haveData=False
@@ -147,17 +151,21 @@ class UserInterface(object):
     #initial view
     def firstInterface(self):
         root=tk.Tk()
-        root.geometry('250x50+500+400')
+        root.geometry('250x90+0+0')
         root.wm_attributes('-topmost',1)
         root.title('Model select')
         button_1=tk.Button(root,text='Cold Call Assist',command=lambda:[root.destroy(),self.CCinterface()])
-        button_1.grid(row=0,column=0)
+        button_1.pack()
 
-        button_2=tk.Button(root,text='Import New File', command=ImportFile)
-        button_2.grid(row=1,column=0)
+        button_2=tk.Button(root,text='Import New File', command=lambda:self.inputFile())
+        button_2.pack()
+        
+        button_3=tk.Button(root,text='Export Existing File', command=lambda:self.exportFileInterface())
+        button_3.pack()
+        
         root.mainloop()
         
-    #tkinter window have been closed, now in termial
+    '''#tkinter window have been closed, now in termial
     def fileInterface(self):
         root=tk.Tk()
         root.geometry('+0+0')
@@ -172,6 +180,20 @@ class UserInterface(object):
         button_2.grid(row=1,column=2)
         button_3=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.firstInterface()])
         button_3.grid(row=2,column=1)
+        root.mainloop()'''
+        
+    def exportFileInterface(self):
+        root=tk.Tk()
+        root.geometry('+0+0')
+        root.wm_attributes('-topmost',1)
+        root.title('Export file')
+        entry = tk.Entry(root, bd =5)
+        entry.pack()
+        self.entry=entry
+        button_1=tk.Button(root,text='Export',command=lambda:self.outputFile(self.entry))
+        button_1.pack()
+        button_2=tk.Button(root,text='Back',command=lambda:[root.destroy()])
+        button_2.pack()
         root.mainloop()
     
     def warningInterface(self):
@@ -181,7 +203,7 @@ class UserInterface(object):
         root.title('Warning')
         theLabel = tk.Label(root,fg='red',text='Warning! Already existing students data, do you want to cover it?')
         theLabel.pack()
-        button_1=tk.Button(root,text='Continue',command=lambda:[root.destroy(),self.clearData(),self.inputFile(self.entry)])
+        button_1=tk.Button(root,text='Continue',command=lambda:[root.destroy(),self.clearData(),self.confirmInput()])
         button_1.pack()
         button_2=tk.Button(root,text='Back',command=lambda:[root.destroy()])
         button_2.pack()
