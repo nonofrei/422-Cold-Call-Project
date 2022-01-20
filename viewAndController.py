@@ -1,6 +1,7 @@
 import tkinter as tk
 import random
 from time import *
+from ImportFile import *
 
 remove1='1'
 remove2='2'
@@ -127,7 +128,7 @@ class UserInterface(object):
         
     def inputFile(self,entry):
         if self.haveData==False:
-            print('Input file:',entry.get())
+            ImportFile()
             self.haveData=True
         else:
             self.warningInterface()
