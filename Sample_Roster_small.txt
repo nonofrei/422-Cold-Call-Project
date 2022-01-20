@@ -1,0 +1,3 @@
+Zacree	Carroll	951858000	zcarroll@uoregon.edu	Zah-Kree	2587998
+Bob	Jorginson	951584201	zcarroll@uoregon.edu	Zah-Kree	2587998
+Smitty	Worbenmanjensen	951555123	smitty@uoregon.edu	Smih-tee	1234567
