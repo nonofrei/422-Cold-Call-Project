@@ -1,4 +1,5 @@
-from tkinter import filedialog, Text
+from tkinter import filedialog, Text, Label
+import tkinter as tk
 
 
 """
@@ -23,7 +24,7 @@ def ImportFile():
 
     # Ask user for to browse for their file
     # use tkinter library to avoid OS specific approach to open a file selection window and save the path of the file
-    filePath = filedialog.askopenfilename(initialdir="/", title="Select Import File",
+    filePath = filedialog.askopenfilename(initialdir="/Users/", title="Select Import File",
                                       filetypes=(("text", "*.txt"), ("all files", "*.*")))
 
     # Try to open file safely
@@ -40,7 +41,7 @@ def ImportFile():
 
     # If file not in correct format then return the error strings (<Error on line>, <Component with error>)
     if scanRes[0] != 0:
-        return scanRes
+        FileError(scanRes[1])
 
     newFile = open("CurrentRoster.txt", "w")
 
@@ -52,7 +53,6 @@ def ImportFile():
 
     f.close()
     newFile.close()
-    return (0,0)
 
 """
     This function will return values based on the value of returnStudentList. If this value is True then ScanFile will
@@ -132,3 +132,11 @@ def ScanFile(f, returnStudentList):
     else:
         return (0,0)
 
+def FileError(error):
+    message_window = tk.Tk()
+    message_window.geometry("500x50+500+500")
+    message_window.title(f"Error: {error}")
+    back_button = tk.Button(message_window, text='Improper File Format. Select Another File',
+                         command=lambda:[message_window.destroy(), ImportFile()])
+    back_button.place(x=125,y=15)
+    message_window.mainloop()

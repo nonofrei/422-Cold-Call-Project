@@ -147,12 +147,13 @@ class UserInterface(object):
     #initial view
     def firstInterface(self):
         root=tk.Tk()
-        root.geometry('+0+0')
+        root.geometry('250x50+500+400')
         root.wm_attributes('-topmost',1)
         root.title('Model select')
         button_1=tk.Button(root,text='Cold Call Assist',command=lambda:[root.destroy(),self.CCinterface()])
         button_1.grid(row=0,column=0)
-        button_2=tk.Button(root,text='File operation',command=lambda:[root.destroy(),self.fileInterface()])
+
+        button_2=tk.Button(root,text='Import New File', command=ImportFile)
         button_2.grid(row=1,column=0)
         root.mainloop()
         
