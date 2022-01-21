@@ -43,12 +43,8 @@ def studentfile(num):
             filestr = fname+"    "+lname+"    "+str(idlist[i])+"    "+email.lower()+"    "+phon+"    "+str(numlist[i])+'\n'
             file.write(filestr)
     file.close()
-
-
-
-
-
-def main():
+"""
+def student_creator():
     print("Enter a number of students to generate (Max:20): ")
     print("Enter 'stop' to end the program")
     inputnumber = 0
@@ -60,17 +56,56 @@ def main():
             inputnumber = int(line)
         except:
             print("Only integers are allowed")
-        if inputnumber > 20 or inputnumber < 1:
-            print("Choose a number between 1 and 20")
+        if inputnumber > 100 or inputnumber < 1:
+            print("Choose a number between 1 and 100")
 
         else:
             print("Generating student list in StudentFile.txt")
             studentfile(inputnumber)
             print("Finished")
             break
+"""
 
+def hundred_test_call():
+    print("Are you sure you want to run 100 test calls? (Enter YES to confirm or any other key to quit)\nAny data in testoutputfile.txt will be deleted")
+    for line in sys.stdin:
+        if "YES" != line.rstrip() or "Yes" != line.rstrip() or "yes" != line.rstrip():
+            f = open("testoutputfile.txt", 'w')
+            print("Creating/Overwriting File")
+            studentfile(100)
+            f2 = open("StudentFile.txt", "r")
+            students = []
+            for thing in f2:
+                students.append(thing.rstrip())
 
+            queue = []
+            for i in range(0,4):
+                rand_int = random.randint(0, len(students))
+                queue.append(students[rand_int])
+                del students[rand_int]
 
+            for i in range(0, 100):
+                temp = random.choice(queue)
+                queue.remove(temp)
+                temp_two = random.choice(students)
+                students.remove(temp_two)
+                queue.append(temp_two)
+                students.append(temp)
+                student = temp.split()
+                t = random.randint(0, 3)
+                if t == 0:
+                    student_to_write = "X    " + student[0] +" "+ student[1] +" "+ "<" + student[3] + ">"
+                else:
+                    student_to_write = student[0] +" "+ student[1] +" "+ "<" + student[3] + ">"
+                #student_to_write = student[0] + "    " + student[1] + "    " + student[3]
+                #student_to_write = f'{student[0]:{12}}    {student[1]:{12}}      {student[3]:{20}}'
+                f.write(student_to_write + "\n")
+            print("Test Finished")
+            break
+
+def main():
+    hundred_test_call()
+    #student_creator()
 
 if __name__ == '__main__':
     main()
