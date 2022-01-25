@@ -3,6 +3,7 @@ import random
 from time import *
 from ImportFile import *
 from collections import *
+from heapq import *
 
 remove1 = '1'
 remove2 = '2'
@@ -21,12 +22,9 @@ class UserInterface(object):
         self.nameList = []
         self.restList = []
 
-        self.studentQueue = deque()     # randomized queue
+        self.studentQueue = list()      # randomized priority queue
         self.infoMap = dict()           # hash map for storing student info
         self.classSize = 0              # for storing number of students
-        self.coldCalledCounter = dict() # number of times each student has been called on
-        self.press = 0                  # number of presses
-        self.numCycles = 0              # number of times all students have been called on
 
         self.fileMode = False
         if data == True:
@@ -39,12 +37,6 @@ class UserInterface(object):
         self.keypress_timer = time()
         self.can_flag = True
 
-    def student_removed(self):
-        self.press += 1
-        self.coldCalledCounter[self.removedName] += 1
-        if self.press % self.classSize == 0:
-            self.numCycles += 1
-
     def removeAndAddStudent_1(self, event):
         # need database(model) part, save remove information
         # need insert the removed name back to restList
@@ -53,19 +45,26 @@ class UserInterface(object):
         self.keypress_timer = time()
         self.can_flag = True
 
+        # remove corresponding student and increase their call counter
+        # add them back to the priority queue
         self.removedName = self.nameList[0]
+        self.removedName[0] += 1
+        heappush(self.studentQueue, self.removedName)
+
+        # slide students to the left on the display
         self.nameList[0] = self.nameList[1]
         self.nameList[1] = self.nameList[2]
         self.nameList[2] = self.nameList[3]
-        nextStudent = self.studentQueue.popleft()
-        self.studentQueue.append(nextStudent)
-        self.student_removed()
+
+        # get next student from the priority queue
+        nextStudent = heappop(self.studentQueue)
         self.nameList[3] = nextStudent
 
-        self.tempList[0].set(self.nameList[0])
-        self.tempList[1].set(self.nameList[1])
-        self.tempList[2].set(self.nameList[2])
-        self.tempList[3].set(nextStudent)
+        # notify display to reflect the changes in the display names
+        self.tempList[0].set(self.nameList[0][1])
+        self.tempList[1].set(self.nameList[1][1])
+        self.tempList[2].set(self.nameList[2][1])
+        self.tempList[3].set(nextStudent[1])
 
     def removeAndAddStudent_2(self, event):
         # need database(model) part, save remove information
@@ -75,17 +74,24 @@ class UserInterface(object):
         self.keypress_timer = time()
         self.can_flag = True
 
+        # remove corresponding student and increase their call counter
+        # add them back to the priority queue
         self.removedName = self.nameList[1]
+        self.removedName[0] += 1
+        heappush(self.studentQueue, self.removedName)
+
+        # slide names to the left on the display
         self.nameList[1] = self.nameList[2]
         self.nameList[2] = self.nameList[3]
-        nextStudent = self.studentQueue.popleft()
-        self.studentQueue.append(nextStudent)
-        self.student_removed()
+
+        # get next student from the priority queue
+        nextStudent = heappop(self.studentQueue)
         self.nameList[3] = nextStudent
 
-        self.tempList[1].set(self.nameList[1])
-        self.tempList[2].set(self.nameList[2])
-        self.tempList[3].set(nextStudent)
+        # notify display to reflect the changes in the display names
+        self.tempList[1].set(self.nameList[1][1])
+        self.tempList[2].set(self.nameList[2][1])
+        self.tempList[3].set(nextStudent[1])
 
     def removeAndAddStudent_3(self, event):
         # need database(model) part, save remove information
@@ -95,15 +101,22 @@ class UserInterface(object):
         self.keypress_timer = time()
         self.can_flag = True
 
+        # remove corresponding student and increase their call counter
+        # add them back to the priority queue
         self.removedName = self.nameList[2]
+        self.removedName[0] += 1
+        heappush(self.studentQueue, self.removedName)
+
+        # slide names to the left on the display
         self.nameList[2] = self.nameList[3]
-        nextStudent = self.studentQueue.popleft()
-        self.studentQueue.append(nextStudent)
-        self.student_removed()
+
+        # get next student from the priority queue
+        nextStudent = heappop(self.studentQueue)
         self.nameList[3] = nextStudent
 
-        self.tempList[2].set(self.nameList[2])
-        self.tempList[3].set(nextStudent)
+        # notify display to reflect the changes in the display names
+        self.tempList[2].set(self.nameList[2][1])
+        self.tempList[3].set(nextStudent[1])
 
     def removeAndAddStudent_4(self, event):
         # need database(model) part, save remove information
@@ -113,13 +126,18 @@ class UserInterface(object):
         self.keypress_timer = time()
         self.can_flag = True
 
+        # remove corresponding student and increase their call counter
+        # add them back to the priority queue
         self.removedName = self.nameList[3]
-        nextStudent = self.studentQueue.popleft()
-        self.studentQueue.append(nextStudent)
-        self.student_removed()
+        self.removedName[0] += 1
+        heappush(self.studentQueue, self.removedName)
+
+        # get next student from priority queue
+        nextStudent = heappop(self.studentQueue)
         self.nameList[3] = nextStudent
 
-        self.tempList[3].set(nextStudent)
+        # notify display to reflect the changes in the display names
+        self.tempList[3].set(nextStudent[1])
 
     def flag(self, event):
         time_difference = time() - self.keypress_timer
@@ -232,14 +250,13 @@ class UserInterface(object):
         for i in range(self.classSize):
             student = random.choice(self.restList)
             name = student[0] + " " + student[1]
-            self.studentQueue.append(name)
+            heappush(self.studentQueue, [0, name])
             self.infoMap[name] = student
-            self.coldCalledCounter[name] = 0
             self.restList.remove(student)
 
         # add 4 students to the display list
         for i in range(4):
-            self.nameList.append(self.studentQueue.popleft())
+            self.nameList.append(heappop(self.studentQueue))
 
         # create window
         self.app = tk.Tk()
@@ -248,7 +265,7 @@ class UserInterface(object):
         tempList = []
         for i in self.nameList:
             tempName = tk.StringVar()
-            tempName.set(i)
+            tempName.set(i[1])
             tempList.append(tempName)
         self.tempList = tempList
 
