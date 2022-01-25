@@ -151,27 +151,24 @@ def ExportFile():
     copyFile = ""
     currentRoster = ""
 	
-	# if the user cancels before selecting a location to export the file to
     if dirPath == '':
-        FileError("File path not selected", "No export path was specified, aborting")
-
+        return
+        
     else:
         # open new file for copying
-        dirPath = dirPath + "/Cold_Call_Roster.txt"
-        copyFile = open(dirPath, "w")
-
-	# if there is a current roster try to open it
-    try:
-		
-        currentRoster = open("CurrentRoster.txt", "r")
-	
-	# otherwise handle exception and call FileError 
-    except:
-
-        FileError("No current roster found", "Please import a roster file before attempting to export")
-	
-    for line in currentRoster.readlines():
-        copyFile.write(line)
+        try:
+        
+            currentRoster = open("CurrentRoster.txt", "r")
+        
+        # otherwise handle exception and call FileError
+        except:
+            FileError("No current roster found", "Please import a roster file before attempting to export")
+            return
+        else:
+            dirPath = dirPath + "/Cold_Call_Roster.txt"
+            copyFile = open(dirPath, "w")
+            for line in currentRoster.readlines():
+                copyFile.write(line)
 
     copyFile.close()
     currentRoster.close()

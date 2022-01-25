@@ -142,13 +142,12 @@ class UserInterface(object):
         ImportFile()
         self.haveData = True
 
-    def outputFile(self, entry):
-        print('Output file:', entry.get())
-        self.haveData = False
+    def outputFile(self):
+        ExportFile()
 
-    def clearData(self):
+    '''def clearData(self):
         print('Clear all student data')
-        self.haveData = False
+        self.haveData = False'''
 
     # initial view
     def firstInterface(self):
@@ -162,7 +161,7 @@ class UserInterface(object):
         button_2 = tk.Button(root, text='Import New File', command=lambda: self.inputFile())
         button_2.pack()
 
-        button_3 = tk.Button(root, text='Export Existing File', command=lambda: self.exportFileInterface())
+        button_3 = tk.Button(root, text='Export Existing File', command=lambda: self.outputFile())
         button_3.pack()
 
         root.mainloop()
@@ -182,7 +181,7 @@ class UserInterface(object):
         button_2.grid(row=1,column=2)
         button_3=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.firstInterface()])
         button_3.grid(row=2,column=1)
-        root.mainloop()'''
+        root.mainloop()
 
     def exportFileInterface(self):
         root = tk.Tk()
@@ -196,7 +195,7 @@ class UserInterface(object):
         button_1.pack()
         button_2 = tk.Button(root, text='Back', command=lambda: [root.destroy()])
         button_2.pack()
-        root.mainloop()
+        root.mainloop()'''
 
     def warningInterface(self):
         root = tk.Tk()
@@ -206,7 +205,7 @@ class UserInterface(object):
         theLabel = tk.Label(root, fg='red', text='Warning! Already existing students data, do you want to cover it?')
         theLabel.pack()
         button_1 = tk.Button(root, text='Continue',
-                             command=lambda: [root.destroy(), self.clearData(), self.confirmInput()])
+                             command=lambda: [root.destroy(), self.confirmInput()])
         button_1.pack()
         button_2 = tk.Button(root, text='Back', command=lambda: [root.destroy()])
         button_2.pack()
