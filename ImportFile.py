@@ -1,3 +1,16 @@
+"""
+	This file contains the functionality needed in order to work with files. The file name implies only import however there are multiple functions defined.
+
+	Authors:
+		Zacree Carroll: ImportFile(), ExportFile(), ScanFile()
+		Luke Vandecasteele: FileError()
+	
+	Created:
+		1/16/22
+
+	Last Modified:
+		1/24/22
+"""
 from tkinter import filedialog, Text, Label
 import tkinter as tk
 
@@ -22,7 +35,7 @@ import tkinter as tk
 """
 def ImportFile():
 
-    # Ask user for to browse for their file
+    # Ask user to browse for their file
     # use tkinter library to avoid OS specific approach to open a file selection window and save the path of the file
     filePath = filedialog.askopenfilename(initialdir="/Users/", title="Select Import File",
                                       filetypes=(("text", "*.txt"), ("all files", "*.*")))
@@ -39,9 +52,8 @@ def ImportFile():
 
     scanRes = ScanFile(f, False)
 
-    # If file not in correct format then return the error strings (<Error on line>, <Component with error>)
     if scanRes[0] != 0:
-        FileError(scanRes[1])
+        FileError(scanRes[1], 'Improper File Format. Select Another File', ImportFile)
 
     newFile = open("CurrentRoster.txt", "w")
 
@@ -132,11 +144,47 @@ def ScanFile(f, returnStudentList):
     else:
         return (0,0)
 
-def FileError(error):
+
+def ExportFile():
+	
+    dirPath = filedialog.askdirectory()
+    copyFile = ""
+    currentRoster = ""
+	
+	# if the user cancels before selecting a location to export the file to
+    if dirPath == '':
+        FileError("File path not selected", "No export path was specified, aborting")
+
+    else:
+        # open new file for copying
+        dirPath = dirPath + "/Cold_Call_Roster.txt"
+        copyFile = open(dirPath, "w")
+
+	# if there is a current roster try to open it
+    try:
+		
+        currentRoster = open("CurrentRoster.txt", "r")
+	
+	# otherwise handle exception and call FileError 
+    except:
+
+        FileError("No current roster found", "Please import a roster file before attempting to export")
+	
+    for line in currentRoster.readlines():
+        copyFile.write(line)
+
+    copyFile.close()
+    currentRoster.close()
+	
+
+def FileError(error, buttonMessage, func=None):
+
     message_window = tk.Tk()
     message_window.geometry("500x50+500+500")
     message_window.title(f"Error: {error}")
-    back_button = tk.Button(message_window, text='Improper File Format. Select Another File',
-                         command=lambda:[message_window.destroy(), ImportFile()])
+    if func != None:
+        back_button = tk.Button(message_window, text=buttonMessage, command=lambda:[message_window.destroy(), func])	
+    else:
+        back_button = tk.Button(message_window, text=buttonMessage, command=message_window.destroy())
     back_button.place(x=125,y=15)
     message_window.mainloop()
