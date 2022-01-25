@@ -1,9 +1,12 @@
 import tkinter as tk
 import random
 from time import *
+
+import studentgen
 from ImportFile import *
 from collections import *
 from heapq import *
+from studentgen import *
 
 remove1 = '1'
 remove2 = '2'
@@ -14,6 +17,8 @@ flag1 = 'q'
 flag2 = 'w'
 flag3 = 'e'
 flag4 = 'r'
+
+test_key = 't'
 
 
 class UserInterface(object):
@@ -36,6 +41,7 @@ class UserInterface(object):
         # for 1 sec flagging and avoiding double flagging
         self.keypress_timer = time()
         self.can_flag = True
+        self.test_flag = False
 
     def removeAndAddStudent_1(self, event):
         # need database(model) part, save remove information
@@ -148,6 +154,24 @@ class UserInterface(object):
 
         # no more flags till next student removed
         self.can_flag = False
+
+    def test_flagging(self, event):
+        # test_flagging checks to see if the 't' key has already been pressed once
+        # If it has then it calls initiate_testing
+        # If not then it sets the test_flag to True
+        if self.test_flag == False:
+            self.test_flag = True
+            return
+
+        if self.test_flag:
+            self.initiate_testing()
+            self.test_flag = False
+
+    def initiate_testing(self):
+        # This method calls on test_warningInterface to initiate the testing procedure
+        if self.test_flag:
+            studentgen.testwarningInterface()
+        self.test_flag = False
 
     def inputFile(self):
         if self.haveData == False:
@@ -302,5 +326,8 @@ class UserInterface(object):
         self.app.bind(flag2, self.flag)
         self.app.bind(flag3, self.flag)
         self.app.bind(flag4, self.flag)
+
+        # Bind the test key to the appropiate method
+        self.app.bind(test_key, self.test_flagging)
 
         self.app.mainloop()
