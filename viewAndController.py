@@ -234,9 +234,6 @@ class UserInterface(object):
             student = random.choice(self.restList)
             name = student[0] + " " + student[1]
             self.studentQueue.append(name)
-            # for duplicate names
-            if self.infoMap.get(name) != None:
-                name += "_a"
             self.infoMap[name] = student
             self.coldCalledCounter[name] = 0
             self.restList.remove(student)
