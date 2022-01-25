@@ -40,7 +40,7 @@ def studentfile(num):
             phon = phonetic[x]
             lname = lastnames[y]
             email = fname[0]+lname+domain
-            filestr = fname+"    "+lname+"    "+str(idlist[i])+"    "+email.lower()+"    "+phon+"    "+str(numlist[i])+'\n'
+            filestr = fname+"\t"+lname+"\t"+str(idlist[i])+"\t"+email.lower()+"\t"+phon+"\t"+str(numlist[i])+'\n'
             file.write(filestr)
     file.close()
 """

@@ -185,6 +185,6 @@ def FileError(error, buttonMessage, func=None):
     if func != None:
         back_button = tk.Button(message_window, text=buttonMessage, command=lambda:[message_window.destroy(), func])	
     else:
-        back_button = tk.Button(message_window, text=buttonMessage, command=message_window.destroy())
+        back_button = tk.Button(message_window, text=buttonMessage, command=message_window.destroy)
     back_button.place(x=125,y=15)
     message_window.mainloop()

@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e69d41fe-ce8d-44e5-a1df-c73e7b2860b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CurrentRoster.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CurrentRoster.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImportFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImportFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sample_Roster_small.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/studentgen.py" beforeDir="false" afterPath="$PROJECT_DIR$/studentgen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/viewAndController.py" beforeDir="false" afterPath="$PROJECT_DIR$/viewAndController.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +41,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -56,6 +58,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="studentgen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="422CCP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/studentgen.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -89,6 +113,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.studentgen" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -106,7 +131,10 @@
       <workItem from="1642130963650" duration="5438000" />
       <workItem from="1642385960008" duration="4333000" />
       <workItem from="1642558236580" duration="1282000" />
-      <workItem from="1642649152030" duration="5232000" />
+      <workItem from="1642649152030" duration="7005000" />
+      <workItem from="1642717224591" duration="3425000" />
+      <workItem from="1642904009029" duration="300000" />
+      <workItem from="1643084792557" duration="8654000" />
     </task>
     <servers />
   </component>
@@ -118,48 +146,82 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1642131043461" />
-    <state width="1185" height="183" key="GridCell.Tab.0.bottom" timestamp="1642654348256">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.0.bottom" timestamp="1643093653843">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="183" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1642654348256" />
-    <state width="1185" height="183" key="GridCell.Tab.0.center" timestamp="1642654348255">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.0.bottom/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093653843" />
+    <state width="1185" height="175" key="GridCell.Tab.0.bottom/0.0.1440.900/-1920.-81.1920.1080@0.0.1440.900" timestamp="1643084699479" />
+    <state width="1185" height="183" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1642734346178" />
+    <state width="1185" height="302" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1642717219756" />
+    <state width="1333" height="391" key="GridCell.Tab.0.center" timestamp="1643093653842">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="183" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1642654348255" />
-    <state width="1185" height="183" key="GridCell.Tab.0.left" timestamp="1642654348255">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.0.center/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093653842" />
+    <state width="1185" height="175" key="GridCell.Tab.0.center/0.0.1440.900/-1920.-81.1920.1080@0.0.1440.900" timestamp="1643084699476" />
+    <state width="1185" height="183" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1642734346159" />
+    <state width="1185" height="302" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1642717219755" />
+    <state width="1333" height="391" key="GridCell.Tab.0.left" timestamp="1643093653841">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="183" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1642654348255" />
-    <state width="1185" height="183" key="GridCell.Tab.0.right" timestamp="1642654348256">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.0.left/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093653841" />
+    <state width="1185" height="175" key="GridCell.Tab.0.left/0.0.1440.900/-1920.-81.1920.1080@0.0.1440.900" timestamp="1643084699473" />
+    <state width="1185" height="183" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1642734346150" />
+    <state width="1185" height="302" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1642717219754" />
+    <state width="1333" height="391" key="GridCell.Tab.0.right" timestamp="1643093653842">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="183" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1642654348256" />
-    <state width="1185" height="302" key="GridCell.Tab.1.bottom" timestamp="1642652712528">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.0.right/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093653842" />
+    <state width="1185" height="175" key="GridCell.Tab.0.right/0.0.1440.900/-1920.-81.1920.1080@0.0.1440.900" timestamp="1643084699477" />
+    <state width="1185" height="183" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1642734346168" />
+    <state width="1185" height="302" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1642717219755" />
+    <state width="1333" height="391" key="GridCell.Tab.1.bottom" timestamp="1643093657017">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="302" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1642652712528" />
-    <state width="1185" height="302" key="GridCell.Tab.1.center" timestamp="1642652712527">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.1.bottom/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093657017" />
+    <state width="1185" height="302" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1642717219758" />
+    <state width="1333" height="391" key="GridCell.Tab.1.center" timestamp="1643093657016">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="302" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1642652712527" />
-    <state width="1185" height="302" key="GridCell.Tab.1.left" timestamp="1642652712527">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.1.center/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093657016" />
+    <state width="1185" height="302" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1642717219757" />
+    <state width="1333" height="391" key="GridCell.Tab.1.left" timestamp="1643093657015">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="302" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1642652712527" />
-    <state width="1185" height="302" key="GridCell.Tab.1.right" timestamp="1642652712528">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1333" height="391" key="GridCell.Tab.1.left/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093657015" />
+    <state width="1185" height="302" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1642717219757" />
+    <state width="1333" height="391" key="GridCell.Tab.1.right" timestamp="1643093657016">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
     </state>
-    <state width="1185" height="302" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1642652712528" />
+    <state width="1333" height="391" key="GridCell.Tab.1.right/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643093657016" />
+    <state width="1185" height="302" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1642717219757" />
+    <state x="-1295" y="125" key="RollbackChangesDialog" timestamp="1643084855384">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
+    </state>
+    <state x="-1295" y="125" key="RollbackChangesDialog/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643084855384" />
+    <state x="-1810" y="84" key="SettingsEditor" timestamp="1643085757283">
+      <screen x="-1920" y="-81" width="1920" height="1080" />
+    </state>
+    <state x="-1810" y="84" key="SettingsEditor/0.0.1440.900/-1920.-81.1920.1080@-1920.-81.1920.1080" timestamp="1643085757283" />
   </component>
   <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="selected_student" language="Python" />
-      </configuration>
-    </watches-manager>
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/viewAndController.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/viewAndController.py</url>
+          <line>244</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/422CCP$main.coverage" NAME="main Coverage Results" MODIFIED="1642654348246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/422CCP$main.coverage" NAME="main Coverage Results" MODIFIED="1643093766774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/422CCP$studentgen.coverage" NAME="studentgen Coverage Results" MODIFIED="1643089313056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/422CCP$test.coverage" NAME="test Coverage Results" MODIFIED="1642382132662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
