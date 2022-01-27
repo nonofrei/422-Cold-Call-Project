@@ -2,6 +2,7 @@ import tkinter as tk
 import random
 from time import *
 from datetime import datetime
+from threading import Thread
 
 import studentgen
 from ImportFile import *
@@ -45,11 +46,7 @@ class UserInterface(object):
         self.test_flag = False
 
     def print_summary_line(self):
-        # need to put a pthread wait() here or a pthread sleep,
-        # need the thread to sleep for one second to wait for potential
-        # flagging
-        # TODO: change to use a pthread wait
-
+        sleep(1)
         studentInfo = self.infoMap[self.removedName[1]]
         output = studentInfo[0] + "\t" + studentInfo[1] + "\t<" + studentInfo[3] + ">\n"
         if not self.can_flag:
@@ -88,8 +85,8 @@ class UserInterface(object):
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
-        # TODO: change to use pthread
-        self.print_summary_line()
+        thread = Thread(target=self.print_summary_line)
+        thread.start()
 
     def removeAndAddStudent_2(self, event):
         # need database(model) part, save remove information
@@ -120,8 +117,8 @@ class UserInterface(object):
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
-        # TODO: change to use pthread
-        self.print_summary_line()
+        thread = Thread(target=self.print_summary_line)
+        thread.start()
 
     def removeAndAddStudent_3(self, event):
         # need database(model) part, save remove information
@@ -150,8 +147,8 @@ class UserInterface(object):
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
-        # TODO: change to use pthread
-        self.print_summary_line()
+        thread = Thread(target=self.print_summary_line)
+        thread.start()
 
     def removeAndAddStudent_4(self, event):
         # need database(model) part, save remove information
@@ -176,18 +173,15 @@ class UserInterface(object):
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
-        # TODO: change to use pthread
-        self.print_summary_line()
+        thread = Thread(target=self.print_summary_line)
+        thread.start()
 
     def flag(self, event):
         time_difference = time() - self.keypress_timer
 
         # within 1 sec and can flag
         if time_difference <= 1 and self.can_flag:
-            print("flag:", self.removedName)
-
-        # no more flags till next student removed
-        self.can_flag = False
+            self.can_flag = False
 
     def test_flagging(self, event):
         # test_flagging checks to see if the 't' key has already been pressed once
