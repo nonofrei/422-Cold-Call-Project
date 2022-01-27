@@ -1,6 +1,7 @@
 import tkinter as tk
 import random
 from time import *
+from datetime import datetime
 
 import studentgen
 from ImportFile import *
@@ -43,6 +44,19 @@ class UserInterface(object):
         self.can_flag = True
         self.test_flag = False
 
+    def print_summary_line(self):
+        # need to put a pthread wait() here or a pthread sleep,
+        # need the thread to sleep for one second to wait for potential
+        # flagging
+        # TODO: change to use a pthread wait
+
+        studentInfo = self.infoMap[self.removedName[1]]
+        output = studentInfo[0] + "\t" + studentInfo[1] + "\t<" + studentInfo[3] + ">\n"
+        if not self.can_flag:
+            output = "X\t" + output
+        self.summaryFile.write(output)
+
+
     def removeAndAddStudent_1(self, event):
         # need database(model) part, save remove information
         # need insert the removed name back to restList
@@ -72,6 +86,11 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2][1])
         self.tempList[3].set(nextStudent[1])
 
+        # print to output file, use a separate thread so that our main thread
+        # is not waiting on if the flagging occurs
+        # TODO: change to use pthread
+        self.print_summary_line()
+
     def removeAndAddStudent_2(self, event):
         # need database(model) part, save remove information
         # need insert the removed name back to restList
@@ -99,6 +118,11 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2][1])
         self.tempList[3].set(nextStudent[1])
 
+        # print to output file, use a separate thread so that our main thread
+        # is not waiting on if the flagging occurs
+        # TODO: change to use pthread
+        self.print_summary_line()
+
     def removeAndAddStudent_3(self, event):
         # need database(model) part, save remove information
         # need insert the removed name back to restList
@@ -124,6 +148,11 @@ class UserInterface(object):
         self.tempList[2].set(self.nameList[2][1])
         self.tempList[3].set(nextStudent[1])
 
+        # print to output file, use a separate thread so that our main thread
+        # is not waiting on if the flagging occurs
+        # TODO: change to use pthread
+        self.print_summary_line()
+
     def removeAndAddStudent_4(self, event):
         # need database(model) part, save remove information
         # need insert the removed name back to restList
@@ -144,6 +173,11 @@ class UserInterface(object):
 
         # notify display to reflect the changes in the display names
         self.tempList[3].set(nextStudent[1])
+
+        # print to output file, use a separate thread so that our main thread
+        # is not waiting on if the flagging occurs
+        # TODO: change to use pthread
+        self.print_summary_line()
 
     def flag(self, event):
         time_difference = time() - self.keypress_timer
@@ -193,20 +227,20 @@ class UserInterface(object):
 
     # initial view
     def firstInterface(self):
-        root = tk.Tk()
-        root.geometry('250x90+0+0')
-        root.wm_attributes('-topmost', 1)
-        root.title('Model select')
-        button_1 = tk.Button(root, text='Cold Call Assist', command=lambda: [root.destroy(), self.CCinterface()])
+        self.app = tk.Tk()
+        self.app.geometry('250x90+0+0')
+        self.app.wm_attributes('-topmost', 1)
+        self.app.title('Model select')
+        button_1 = tk.Button(self.app, text='Cold Call Assist', command=lambda: [self.CCinterface()])
         button_1.pack()
 
-        button_2 = tk.Button(root, text='Import New File', command=lambda: self.inputFile())
+        button_2 = tk.Button(self.app, text='Import New File', command=lambda: self.inputFile())
         button_2.pack()
 
-        button_3 = tk.Button(root, text='Export Existing File', command=lambda: self.outputFile())
+        button_3 = tk.Button(self.app, text='Select Location to Export Student File', command=lambda: self.outputFile())
         button_3.pack()
 
-        root.mainloop()
+        self.app.mainloop()
 
     '''#tkinter window have been closed, now in termial
     def fileInterface(self):
@@ -282,9 +316,17 @@ class UserInterface(object):
         for i in range(4):
             self.nameList.append(heappop(self.studentQueue))
 
+        # create summary file to write to
+        now = datetime.now()
+        fileName = now.strftime("%b-%d-%Y_%H:%M:%S") + "_Summary.txt"
+        self.summaryFile = open(fileName, "w")
+
+        # we can now safely close the main menu, open cold call assist
+        self.app.destroy()
+
         # create window
-        self.app = tk.Tk()
-        self.app.geometry('+0+0')
+        root = tk.Tk()
+        root.geometry('+0+0')
 
         tempList = []
         for i in self.nameList:
@@ -293,41 +335,41 @@ class UserInterface(object):
             tempList.append(tempName)
         self.tempList = tempList
 
-        self.app.wm_attributes('-topmost', 1)
-        self.app.title('Cold-Call Assist')
-        tk.Label(self.app, text='Next students:').grid(row=0, column=0)
+        root.wm_attributes('-topmost', 1)
+        root.title('Cold-Call Assist')
+        tk.Label(root, text='Next students:').grid(row=0, column=0)
 
-        theLabel_1 = tk.Label(self.app, textvariable=self.tempList[0])
+        theLabel_1 = tk.Label(root, textvariable=self.tempList[0])
         theLabel_1.grid(row=0, column=1)
-        self.app.bind(remove1, self.removeAndAddStudent_1)
+        root.bind(remove1, self.removeAndAddStudent_1)
 
-        tk.Label(self.app, text=' ').grid(row=0, column=2)
+        tk.Label(root, text=' ').grid(row=0, column=2)
 
-        theLabel_2 = tk.Label(self.app, textvariable=self.tempList[1])
+        theLabel_2 = tk.Label(root, textvariable=self.tempList[1])
         theLabel_2.grid(row=0, column=3)
-        self.app.bind(remove2, self.removeAndAddStudent_2)
+        root.bind(remove2, self.removeAndAddStudent_2)
 
-        tk.Label(self.app, text=' ').grid(row=0, column=4)
+        tk.Label(root, text=' ').grid(row=0, column=4)
 
-        theLabel_3 = tk.Label(self.app, textvariable=self.tempList[2])
+        theLabel_3 = tk.Label(root, textvariable=self.tempList[2])
         theLabel_3.grid(row=0, column=5)
-        self.app.bind(remove3, self.removeAndAddStudent_3)
+        root.bind(remove3, self.removeAndAddStudent_3)
 
-        tk.Label(self.app, text=' ').grid(row=0, column=6)
+        tk.Label(root, text=' ').grid(row=0, column=6)
 
-        theLabel_4 = tk.Label(self.app, textvariable=self.tempList[3])
+        theLabel_4 = tk.Label(root, textvariable=self.tempList[3])
         theLabel_4.grid(row=0, column=7)
-        self.app.bind(remove4, self.removeAndAddStudent_4)
+        root.bind(remove4, self.removeAndAddStudent_4)
 
-        buttonBack = tk.Button(self.app, text='Back', command=lambda: [self.app.destroy(), self.firstInterface()])
+        buttonBack = tk.Button(root, text='Back', command=lambda: [root.destroy(), self.firstInterface()])
         buttonBack.grid(row=1, sticky='w')
 
-        self.app.bind(flag1, self.flag)
-        self.app.bind(flag2, self.flag)
-        self.app.bind(flag3, self.flag)
-        self.app.bind(flag4, self.flag)
+        root.bind(flag1, self.flag)
+        root.bind(flag2, self.flag)
+        root.bind(flag3, self.flag)
+        root.bind(flag4, self.flag)
 
         # Bind the test key to the appropiate method
-        self.app.bind(test_key, self.test_flagging)
+        root.bind(test_key, self.test_flagging)
 
-        self.app.mainloop()
+        root.mainloop()

@@ -1,100 +1,100 @@
-X    Kaley Flores <kalflores@uoregon.edu>
-X    Kaley Anderson <kalanderson@uoregon.edu>
-Kirk Brown <kirbrown@uoregon.edu>
-Thao Tran <thatran@uoregon.edu>
-X    Yandis Martin <yanmartin@uoregon.edu>
-Emily White <emiwhite@uoregon.edu>
-Kaley Flores <kalflores@uoregon.edu>
-Zooey Williams <zoowilliams@uoregon.edu>
-Isla Perez <islperez@uoregon.edu>
-Demi Cao <demcao@uoregon.edu>
-Lillian Wilson <lilwilson@uoregon.edu>
-Alicia Adams <aliadams@uoregon.edu>
-Benny Brown <benbrown@uoregon.edu>
-Joe Gonzalez <joegonzalez@uoregon.edu>
-Nave Garcia <navgarcia@uoregon.edu>
-X    T�a Davis <t�adavis@uoregon.edu>
-X    Emily Harris <emiharris@uoregon.edu>
-Lupita Perez <lupperez@uoregon.edu>
-Camila Thomas <camthomas@uoregon.edu>
-Martin Anderson <maranderson@uoregon.edu>
-Britney Jackson <brijackson@uoregon.edu>
-Charlize Flores <chaflores@uoregon.edu>
-X    Zooey King <zooking@uoregon.edu>
-Zach Rodriguez <zacrodriguez@uoregon.edu>
-X    Malin Johnson <maljohnson@uoregon.edu>
-Tenzin Hall <tenhall@uoregon.edu>
-Malin Thompson <malthompson@uoregon.edu>
-Lillian Wilson <lilwilson@uoregon.edu>
-Zooey Chen <zoochen@uoregon.edu>
-Malin Johnson <maljohnson@uoregon.edu>
-Shia Torres <shitorres@uoregon.edu>
-Charlize Flores <chaflores@uoregon.edu>
-Wick Thomas <wicthomas@uoregon.edu>
-X    Joaquin Wright <joawright@uoregon.edu>
-Quvenzhan� Moore <quvmoore@uoregon.edu>
-Ariana Johnson <arijohnson@uoregon.edu>
-Saoirse Gonzalez <saogonzalez@uoregon.edu>
-X    Isla Perez <islperez@uoregon.edu>
-Nave Garcia <navgarcia@uoregon.edu>
-X    Reeves Allen <reeallen@uoregon.edu>
-Ronny Cao <roncao@uoregon.edu>
-Kurts Nelson <kurnelson@uoregon.edu>
-Joaquin Bui <joabui@uoregon.edu>
-X    Amanda Lopez <amalopez@uoregon.edu>
-Ariana Davis <aridavis@uoregon.edu>
-Ricola Bui <ricbui@uoregon.edu>
-X    Isla Rivera <islrivera@uoregon.edu>
-Amanda Lopez <amalopez@uoregon.edu>
-X    Jax Ma <jaxma@uoregon.edu>
-Ezekeial Bui <ezebui@uoregon.edu>
-X    Ariana Johnson <arijohnson@uoregon.edu>
-Jax Ma <jaxma@uoregon.edu>
-IraMae Hill <irahill@uoregon.edu>
-Nave Allen <navallen@uoregon.edu>
-Malin Johnson <maljohnson@uoregon.edu>
-Doutzen Baker <doubaker@uoregon.edu>
-Desmond Perez <desperez@uoregon.edu>
-Milo Hall <milhall@uoregon.edu>
-Joaquin Wright <joawright@uoregon.edu>
-X    Yandis Harris <yanharris@uoregon.edu>
-Ezekeial Bui <ezebui@uoregon.edu>
-X    Amanda Lopez <amalopez@uoregon.edu>
-Ricola Bui <ricbui@uoregon.edu>
-Nave Moore <navmoore@uoregon.edu>
-Charlize Flores <chaflores@uoregon.edu>
-Idris Taylor <idrtaylor@uoregon.edu>
-Ezekeial Bui <ezebui@uoregon.edu>
-Charlize Flores <chaflores@uoregon.edu>
-X    Zach Harris <zacharris@uoregon.edu>
-X    Konner Anderson <konanderson@uoregon.edu>
-Cara Johnson <carjohnson@uoregon.edu>
-Malin Johnson <maljohnson@uoregon.edu>
-X    Wick Thomas <wicthomas@uoregon.edu>
-Kurts King <kurking@uoregon.edu>
-X    Emily White <emiwhite@uoregon.edu>
-X    Alicia Adams <aliadams@uoregon.edu>
-Ariana Gonzalez <arigonzalez@uoregon.edu>
-Amanda Scott <amascott@uoregon.edu>
-Noah Clark <noaclark@uoregon.edu>
-T�a Davis <t�adavis@uoregon.edu>
-X    Kirk Jones <kirjones@uoregon.edu>
-Camila Thomas <camthomas@uoregon.edu>
-Benny Brown <benbrown@uoregon.edu>
-X    Idris Taylor <idrtaylor@uoregon.edu>
-Joaquin Wright <joawright@uoregon.edu>
-X    Isla Allen <islallen@uoregon.edu>
-Quvenzhan� Martinez <quvmartinez@uoregon.edu>
-Camila Thomas <camthomas@uoregon.edu>
-Ariana Davis <aridavis@uoregon.edu>
-Zed Anderson <zedanderson@uoregon.edu>
-Lupita Perez <lupperez@uoregon.edu>
-X    Zach Harris <zacharris@uoregon.edu>
-X    Zooey Chen <zoochen@uoregon.edu>
-Zooey Williams <zoowilliams@uoregon.edu>
-Martin Anderson <maranderson@uoregon.edu>
-X    Yandis Harris <yanharris@uoregon.edu>
-Konner Anderson <konanderson@uoregon.edu>
-X    Zooey Lopez <zoolopez@uoregon.edu>
-Joaquin Wright <joawright@uoregon.edu>
-Alicia Adams <aliadams@uoregon.edu>
+Camila Davis <camdavis@uoregon.edu>
+Idina Roberts <idiroberts@uoregon.edu>
+X	Kacee	Young	<kacyoung@uoregon.edu>
+Idris Allen <idrallen@uoregon.edu>
+Ariana Smith <arismith@uoregon.edu>
+X	Joe	Chen	<joechen@uoregon.edu>
+Haowie Rivera <haorivera@uoregon.edu>
+Marion Moore <marmoore@uoregon.edu>
+Kim Pham <kimpham@uoregon.edu>
+Chloë Cao <chlcao@uoregon.edu>
+Drake Brown <drabrown@uoregon.edu>
+Idris Pham <idrpham@uoregon.edu>
+Chrissy Robinson <chrrobinson@uoregon.edu>
+Ansel Adams <ansadams@uoregon.edu>
+Isla Garcia <islgarcia@uoregon.edu>
+Camila Jones <camjones@uoregon.edu>
+Zach Campbell <zaccampbell@uoregon.edu>
+X	Milla	Cao	<milcao@uoregon.edu>
+Alicia Harris <aliharris@uoregon.edu>
+X	Jax	Jackson	<jaxjackson@uoregon.edu>
+Joe Chen <joechen@uoregon.edu>
+Noah Adams <noaadams@uoregon.edu>
+Idina Roberts <idiroberts@uoregon.edu>
+Ansel Mae <ansmae@uoregon.edu>
+X	Haowie	Harris	<haoharris@uoregon.edu>
+Zach Baker <zacbaker@uoregon.edu>
+Ewan Bui <ewabui@uoregon.edu>
+Ariana Green <arigreen@uoregon.edu>
+Sade Roberts <sadroberts@uoregon.edu>
+Drake Brown <drabrown@uoregon.edu>
+Haowie Garcia <haogarcia@uoregon.edu>
+Haowie Mitchell <haomitchell@uoregon.edu>
+Milla Cao <milcao@uoregon.edu>
+Konner White <konwhite@uoregon.edu>
+Yandis King <yanking@uoregon.edu>
+Zed Carter <zedcarter@uoregon.edu>
+Camila Ramirez <camramirez@uoregon.edu>
+Konner Smith <konsmith@uoregon.edu>
+Ansel Mae <ansmae@uoregon.edu>
+Idina Lieng <idilieng@uoregon.edu>
+Ezekeial Chen <ezechen@uoregon.edu>
+Boowon Anderson <booanderson@uoregon.edu>
+Ariana Smith <arismith@uoregon.edu>
+Marion Allen <marallen@uoregon.edu>
+X	Rihanna	Wright	<rihwright@uoregon.edu>
+Téa Gonzalez <téagonzalez@uoregon.edu>
+Desmond Johnson <desjohnson@uoregon.edu>
+Haowie Garcia <haogarcia@uoregon.edu>
+X	Idris	Pham	<idrpham@uoregon.edu>
+Kacee Young <kacyoung@uoregon.edu>
+Ariana Smith <arismith@uoregon.edu>
+Rihanna Wright <rihwright@uoregon.edu>
+Haowie Allen <haoallen@uoregon.edu>
+Kaley Allen <kalallen@uoregon.edu>
+Kim Davis <kimdavis@uoregon.edu>
+Haowie Garcia <haogarcia@uoregon.edu>
+X	Ezekeial	Jackson	<ezejackson@uoregon.edu>
+X	Marion	Mae	<marmae@uoregon.edu>
+Téa Smith <téasmith@uoregon.edu>
+Marion Mae <marmae@uoregon.edu>
+Milla Cao <milcao@uoregon.edu>
+Ansel Mae <ansmae@uoregon.edu>
+Téa Smith <téasmith@uoregon.edu>
+Gal Miller <galmiller@uoregon.edu>
+Sade Roberts <sadroberts@uoregon.edu>
+Joe Chen <joechen@uoregon.edu>
+Camila Davis <camdavis@uoregon.edu>
+Chloë Cao <chlcao@uoregon.edu>
+Judy Garcia <judgarcia@uoregon.edu>
+Zed Carter <zedcarter@uoregon.edu>
+Rihanna Lewis <rihlewis@uoregon.edu>
+Téa Gonzalez <téagonzalez@uoregon.edu>
+Camila Davis <camdavis@uoregon.edu>
+Kim Robinson <kimrobinson@uoregon.edu>
+Konner White <konwhite@uoregon.edu>
+Rihanna Lewis <rihlewis@uoregon.edu>
+X	Amanda	Moore	<amamoore@uoregon.edu>
+Irina Green <irigreen@uoregon.edu>
+Isla Hall <islhall@uoregon.edu>
+X	Isla	Hernandez	<islhernandez@uoregon.edu>
+X	Charlize	Rivera	<charivera@uoregon.edu>
+Sade Robinson <sadrobinson@uoregon.edu>
+X	Amanda	Moore	<amamoore@uoregon.edu>
+Zach Baker <zacbaker@uoregon.edu>
+Idris Roberts <idrroberts@uoregon.edu>
+X	Sade	Adams	<sadadams@uoregon.edu>
+Noah Adams <noaadams@uoregon.edu>
+X	Idina	Jackson	<idijackson@uoregon.edu>
+Chrissy Robinson <chrrobinson@uoregon.edu>
+Rachel Carter <raccarter@uoregon.edu>
+Idina Lieng <idilieng@uoregon.edu>
+Isla Garcia <islgarcia@uoregon.edu>
+Alicia Harris <aliharris@uoregon.edu>
+Isla Hall <islhall@uoregon.edu>
+Zach Campbell <zaccampbell@uoregon.edu>
+X	Kim	Gonzalez	<kimgonzalez@uoregon.edu>
+Téa Smith <téasmith@uoregon.edu>
+Kim Carter <kimcarter@uoregon.edu>
+Haowie Rivera <haorivera@uoregon.edu>
+X	Ewan	Bui	<ewabui@uoregon.edu>

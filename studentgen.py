@@ -113,7 +113,7 @@ def caller():
         # Write to file
         # Format is specified at the top of this file
         if t == 0:
-            student_to_write = "X    " + student[0] +" "+ student[1] +" "+ "<" + student[3] + ">"
+            student_to_write = "X\t" + student[0] +"\t"+ student[1] +"\t"+ "<" + student[3] + ">"
         else:
             student_to_write = student[0] +" "+ student[1] +" "+ "<" + student[3] + ">"
                 #student_to_write = student[0] + "    " + student[1] + "    " + student[3]
