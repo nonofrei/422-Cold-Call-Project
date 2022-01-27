@@ -14,7 +14,6 @@
 from tkinter import filedialog, Text, Label
 import tkinter as tk
 
-
 """
     This function provides the functionality for the import file button. It opens a file searching window and allows
     the user to search their computer for their desired file. They are only allowed to select .txt files within this 
@@ -33,12 +32,13 @@ import tkinter as tk
     return value: Returns a tuple (<Line Number>, <Error string>), if the tuple (0,0) is returned then the action
                   was successful and the file has been successfully imported
 """
-def ImportFile():
 
+
+def ImportFile():
     # Ask user to browse for their file
     # use tkinter library to avoid OS specific approach to open a file selection window and save the path of the file
     filePath = filedialog.askopenfilename(initialdir="/Users/", title="Select Import File",
-                                      filetypes=(("text", "*.txt"), ("all files", "*.*")))
+                                          filetypes=(("text", "*.txt"), ("all files", "*.*")))
 
     # Try to open file safely
     try:
@@ -66,6 +66,7 @@ def ImportFile():
     f.close()
     newFile.close()
 
+
 """
     This function will return values based on the value of returnStudentList. If this value is True then ScanFile will
     return a list. Contained in this list will be lists of individual student information. The format of the return 
@@ -74,8 +75,8 @@ def ImportFile():
     and act accordingly.
 """
 
-def ScanFile(f, returnStudentList):
 
+def ScanFile(f, returnStudentList):
     errorDict = {
         -1: "First or last name contained invalid character",
         -2: "Problem with UO ID",
@@ -101,7 +102,7 @@ def ScanFile(f, returnStudentList):
             and the component which contained the issue
             """
             # check for proper amount of components
-            if(len(splitLine) < 5):
+            if (len(splitLine) < 5):
                 return ["E", f"Error on line {lnum}: {errorDict[-8]}"]
 
             # if space is found then file tabbing was done in correctly
@@ -116,7 +117,7 @@ def ScanFile(f, returnStudentList):
             # check UO ID must be a number 9 digits long and start with 951
             elif cnum == 2:
                 if not comp.isdigit() or len(comp) != 9 or comp.find("951", 0, 3) == -1:
-                    return ["E" ,f"Error on line {lnum}: {errorDict[-2]}"]
+                    return ["E", f"Error on line {lnum}: {errorDict[-2]}"]
 
             # check email for @ and . not very robust check but works for now
             # TODO: Possibly add regex check for email validity
@@ -128,11 +129,9 @@ def ScanFile(f, returnStudentList):
 
             # file may not contain phonetic spellings so find out what the 5th component is
             elif cnum >= 4:
-                if len(splitLine) == 5: # if true then this is a reveal code
+                if len(splitLine) == 5:  # if true then this is a reveal code
                     if not comp.isdigit():
                         return ["E", f"Error on line {lnum}: {errorDict[-4]}"]
-
-
 
             student.append(comp)
 
@@ -142,24 +141,23 @@ def ScanFile(f, returnStudentList):
         return studentInfoLists
 
     else:
-        return (0,0)
+        return (0, 0)
 
 
 def ExportFile():
-	
     dirPath = filedialog.askdirectory()
     copyFile = ""
     currentRoster = ""
-	
+
     if dirPath == '':
         return
-        
+
     else:
         # open new file for copying
         try:
-        
+
             currentRoster = open("CurrentRoster.txt", "r")
-        
+
         # otherwise handle exception and call FileError
         except:
             FileError("No current roster found", "Please import a roster file before attempting to export")
@@ -172,16 +170,15 @@ def ExportFile():
 
     copyFile.close()
     currentRoster.close()
-	
+
 
 def FileError(error, buttonMessage, func=None):
-
     message_window = tk.Tk()
     message_window.geometry("500x50+500+500")
     message_window.title(f"Error: {error}")
     if func != None:
-        back_button = tk.Button(message_window, text=buttonMessage, command=lambda:[message_window.destroy(), func])	
+        back_button = tk.Button(message_window, text=buttonMessage, command=lambda: [message_window.destroy(), func])
     else:
         back_button = tk.Button(message_window, text=buttonMessage, command=message_window.destroy)
-    back_button.place(x=125,y=15)
+    back_button.place(x=125, y=15)
     message_window.mainloop()
