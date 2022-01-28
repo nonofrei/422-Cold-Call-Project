@@ -171,7 +171,7 @@ def ExportFile():
     copyFile.close()
     currentRoster.close()
 
-
+# TODO: MOVE TO OTHER MODULE
 def FileError(error, buttonMessage, func=None):
     message_window = tk.Tk()
     message_window.geometry("500x50+500+500")
