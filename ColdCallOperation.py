@@ -33,8 +33,6 @@ class UserInterface(object):
         self.studentQueue = PriorityQueue()  # randomized priority queue
         self.infoMap = dict()               # hash map for storing student info
         self.classSize = 0                  # for storing number of students
-
-        self.fileMode = False
         self.removedName = None
 
         # for 1 sec flagging and avoiding double flagging
@@ -83,8 +81,6 @@ class UserInterface(object):
         thread.start()
 
     def removeAndAddStudent_2(self, event):
-        # need database(model) part, save remove information
-        # need insert the removed name back to restList
 
         # 1 sec delay and allow flagging
         self.keypress_timer = time()
@@ -115,8 +111,6 @@ class UserInterface(object):
         thread.start()
 
     def removeAndAddStudent_3(self, event):
-        # need database(model) part, save remove information
-        # need insert the removed name back to restList
 
         # 1 sec delay and allow flagging
         self.keypress_timer = time()
@@ -145,8 +139,6 @@ class UserInterface(object):
         thread.start()
 
     def removeAndAddStudent_4(self, event):
-        # need database(model) part, save remove information
-        # need insert the removed name back to restList
 
         # 1 sec delay and allow flagging
         self.keypress_timer = time()
