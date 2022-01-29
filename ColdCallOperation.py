@@ -5,11 +5,11 @@ from datetime import datetime
 from threading import Thread
 import os
 
-import studentgen
-from ImportFile import *
+import Testing
+from ImportAndExport import *
 from collections import *
 from heapq import *
-from studentgen import *
+from Testing import *
 
 remove1 = '1'
 remove2 = '2'
