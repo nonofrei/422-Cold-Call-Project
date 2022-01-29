@@ -8,7 +8,7 @@ import os
 import Testing
 from ImportAndExport import *
 from collections import *
-from heapq import *
+from queue import *
 from Testing import *
 
 remove1 = '1'
@@ -30,12 +30,12 @@ class UserInterface(object):
         self.nameList = []
         self.restList = []
 
-        self.studentQueue = list()      # randomized priority queue
-        self.infoMap = dict()           # hash map for storing student info
-        self.classSize = 0              # for storing number of students
+        self.studentQueue = PriorityQueue()  # randomized priority queue
+        self.infoMap = dict()               # hash map for storing student info
+        self.classSize = 0                  # for storing number of students
 
         self.fileMode = False
-        self.removedName = ''
+        self.removedName = None
 
         # for 1 sec flagging and avoiding double flagging
         self.keypress_timer = time()
@@ -44,12 +44,11 @@ class UserInterface(object):
 
     def print_summary_line(self):
         sleep(1)
-        studentInfo = self.infoMap[self.removedName[1]]
+        studentInfo = self.infoMap[self.removedName.name]
         output = studentInfo[0] + "\t" + studentInfo[1] + "\t<" + studentInfo[3] + ">\n"
         if not self.can_flag:
             output = "X\t" + output
         self.summaryFile.write(output)
-
 
     def removeAndAddStudent_1(self, event):
 
@@ -60,8 +59,8 @@ class UserInterface(object):
         # remove corresponding student and increase their call counter
         # add them back to the priority queue
         self.removedName = self.nameList[0]
-        self.removedName[0] += 1
-        heappush(self.studentQueue, self.removedName)
+        self.removedName.priority += 1
+        self.studentQueue.put(self.removedName)
 
         # slide students to the left on the display
         self.nameList[0] = self.nameList[1]
@@ -69,14 +68,14 @@ class UserInterface(object):
         self.nameList[2] = self.nameList[3]
 
         # get next student from the priority queue
-        nextStudent = heappop(self.studentQueue)
+        nextStudent = self.studentQueue.get()
         self.nameList[3] = nextStudent
 
         # notify display to reflect the changes in the display names
-        self.tempList[0].set(self.nameList[0][1])
-        self.tempList[1].set(self.nameList[1][1])
-        self.tempList[2].set(self.nameList[2][1])
-        self.tempList[3].set(nextStudent[1])
+        self.tempList[0].set(self.nameList[0].name)
+        self.tempList[1].set(self.nameList[1].name)
+        self.tempList[2].set(self.nameList[2].name)
+        self.tempList[3].set(nextStudent.name)
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
@@ -94,21 +93,21 @@ class UserInterface(object):
         # remove corresponding student and increase their call counter
         # add them back to the priority queue
         self.removedName = self.nameList[1]
-        self.removedName[0] += 1
-        heappush(self.studentQueue, self.removedName)
+        self.removedName.priority += 1
+        self.studentQueue.put(self.removedName)
 
         # slide names to the left on the display
         self.nameList[1] = self.nameList[2]
         self.nameList[2] = self.nameList[3]
 
         # get next student from the priority queue
-        nextStudent = heappop(self.studentQueue)
+        nextStudent = self.studentQueue.get()
         self.nameList[3] = nextStudent
 
         # notify display to reflect the changes in the display names
-        self.tempList[1].set(self.nameList[1][1])
-        self.tempList[2].set(self.nameList[2][1])
-        self.tempList[3].set(nextStudent[1])
+        self.tempList[1].set(self.nameList[1].name)
+        self.tempList[2].set(self.nameList[2].name)
+        self.tempList[3].set(nextStudent.name)
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
@@ -126,19 +125,19 @@ class UserInterface(object):
         # remove corresponding student and increase their call counter
         # add them back to the priority queue
         self.removedName = self.nameList[2]
-        self.removedName[0] += 1
-        heappush(self.studentQueue, self.removedName)
+        self.removedName.priority += 1
+        self.studentQueue.put(self.removedName)
 
         # slide names to the left on the display
         self.nameList[2] = self.nameList[3]
 
         # get next student from the priority queue
-        nextStudent = heappop(self.studentQueue)
+        nextStudent = self.studentQueue.get()
         self.nameList[3] = nextStudent
 
         # notify display to reflect the changes in the display names
-        self.tempList[2].set(self.nameList[2][1])
-        self.tempList[3].set(nextStudent[1])
+        self.tempList[2].set(self.nameList[2].name)
+        self.tempList[3].set(nextStudent.name)
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
@@ -156,15 +155,15 @@ class UserInterface(object):
         # remove corresponding student and increase their call counter
         # add them back to the priority queue
         self.removedName = self.nameList[3]
-        self.removedName[0] += 1
-        heappush(self.studentQueue, self.removedName)
+        self.removedName.priority += 1
+        self.studentQueue.put(self.removedName)
 
         # get next student from priority queue
-        nextStudent = heappop(self.studentQueue)
+        nextStudent = self.studentQueue.get()
         self.nameList[3] = nextStudent
 
         # notify display to reflect the changes in the display names
-        self.tempList[3].set(nextStudent[1])
+        self.tempList[3].set(nextStudent.name)
 
         # print to output file, use a separate thread so that our main thread
         # is not waiting on if the flagging occurs
@@ -193,7 +192,7 @@ class UserInterface(object):
     def initiate_testing(self):
         # This method calls on test_warningInterface to initiate the testing procedure
         if self.test_flag:
-            studentgen.testwarningInterface()
+            Testing.testwarningInterface()
         self.test_flag = False
 
     def inputFile(self):
@@ -249,7 +248,7 @@ class UserInterface(object):
 
         # process student list file
         self.restList = deque(ScanFile(currentRoster, True))
-        
+
         # check that it read the file correctly
         if self.restList.popleft() == "E":
             FileError("Error Reading Current Student List", "Please Import New Student List")
@@ -260,12 +259,12 @@ class UserInterface(object):
         for i in range(self.classSize):
             student = random.choice(self.restList)
             name = student[0] + " " + student[1]
-            heappush(self.studentQueue, [0, name])
+            self.studentQueue.put(Student(name, 0))
             self.infoMap[name] = student
             self.restList.remove(student)
         # add 4 students to the display list
         for i in range(4):
-            self.nameList.append(heappop(self.studentQueue))
+            self.nameList.append(self.studentQueue.get())
 
         # create summary file to write to
         now = datetime.now()
@@ -282,7 +281,7 @@ class UserInterface(object):
         tempList = []
         for i in self.nameList:
             tempName = tk.StringVar()
-            tempName.set(i[1])
+            tempName.set(i.name)
             tempList.append(tempName)
         self.tempList = tempList
 
@@ -325,10 +324,22 @@ class UserInterface(object):
 
         root.mainloop()
 
+
+class Student():
+
+    def __init__(self, name, priority):
+        self.name = name
+        self.priority = priority
+
+    def __lt__(self, other):
+        return self.priority < other.priority
+
+
 # initiate cold call system
 def main():
-    interface=UserInterface()
+    interface = UserInterface()
     interface.firstInterface()
+
 
 if __name__ == '__main__':
     main()
