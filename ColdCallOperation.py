@@ -213,13 +213,13 @@ class UserInterface(object):
         self.app.geometry('250x90+0+0')
         self.app.wm_attributes('-topmost', 1)
         self.app.title('Model select')
-        button_1 = tk.Button(self.app, text='Cold Call Assist', command=lambda: [self.CCinterface()])
+        button_1 = tk.Button(self.app, text='Cold Call Assist', fg="black", bg="white", command=lambda: [self.CCinterface()])
         button_1.pack()
 
-        button_2 = tk.Button(self.app, text='Import New File', command=lambda: self.inputFile())
+        button_2 = tk.Button(self.app, text='Import New File', fg="black", bg="white", command=lambda: self.inputFile())
         button_2.pack()
 
-        button_3 = tk.Button(self.app, text='Select Location to Export Student File', command=lambda: self.outputFile())
+        button_3 = tk.Button(self.app, text='Select Location to Export Student File', fg="black", bg="white", command=lambda: self.outputFile())
         button_3.pack()
 
         self.app.mainloop()
@@ -311,7 +311,7 @@ class UserInterface(object):
         theLabel_4.grid(row=0, column=7)
         root.bind(remove4, self.removeAndAddStudent_4)
 
-        buttonBack = tk.Button(root, text='Back', command=lambda: [root.destroy(), self.firstInterface()])
+        buttonBack = tk.Button(root, text='Back', fg="black", bg="white", command=lambda: [root.destroy(), self.firstInterface()])
         buttonBack.grid(row=1, sticky='w')
 
         root.bind(flag1, self.flag)
