@@ -324,3 +324,11 @@ class UserInterface(object):
         root.bind(test_key, self.test_flagging)
 
         root.mainloop()
+
+# initiate cold call system
+def main():
+    interface=UserInterface()
+    interface.firstInterface()
+
+if __name__ == '__main__':
+    main()
