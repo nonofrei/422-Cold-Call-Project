@@ -3,6 +3,7 @@ import random
 from time import *
 from datetime import datetime
 from threading import Thread
+import os
 
 import studentgen
 from ImportFile import *
@@ -25,7 +26,7 @@ test_key = 't'
 
 class UserInterface(object):
 
-    def __init__(self, nameList, restList, data):
+    def __init__(self):
         self.nameList = []
         self.restList = []
 
@@ -34,10 +35,6 @@ class UserInterface(object):
         self.classSize = 0              # for storing number of students
 
         self.fileMode = False
-        if data == True:
-            self.haveData = True
-        else:
-            self.haveData = False
         self.removedName = ''
 
         # for 1 sec flagging and avoiding double flagging
@@ -55,8 +52,6 @@ class UserInterface(object):
 
 
     def removeAndAddStudent_1(self, event):
-        # need database(model) part, save remove information
-        # need insert the removed name back to restList
 
         # 1 sec delay and allow flagging
         self.keypress_timer = time()
@@ -202,22 +197,16 @@ class UserInterface(object):
         self.test_flag = False
 
     def inputFile(self):
-        if self.haveData == False:
+        if os.path.exists('CurrentRoster.txt') == False:
             ImportFile()
-            self.haveData = True
         else:
             self.warningInterface()
 
     def confirmInput(self):
         ImportFile()
-        self.haveData = True
 
     def outputFile(self):
         ExportFile()
-
-    '''def clearData(self):
-        print('Clear all student data')
-        self.haveData = False'''
 
     # initial view
     def firstInterface(self):
@@ -235,37 +224,6 @@ class UserInterface(object):
         button_3.pack()
 
         self.app.mainloop()
-
-    '''#tkinter window have been closed, now in termial
-    def fileInterface(self):
-        root=tk.Tk()
-        root.geometry('+0+0')
-        root.wm_attributes('-topmost',1)
-        root.title('File operation')
-        entry = tk.Entry(root, bd =5)
-        entry.grid(row=0,column=1)
-        self.entry=entry
-        button_1=tk.Button(root,text='Input',command=lambda:self.inputFile(self.entry))
-        button_1.grid(row=1,column=0)
-        button_2=tk.Button(root,text='Output',command=lambda:self.outputFile(self.entry))
-        button_2.grid(row=1,column=2)
-        button_3=tk.Button(root,text='Back',command=lambda:[root.destroy(),self.firstInterface()])
-        button_3.grid(row=2,column=1)
-        root.mainloop()
-
-    def exportFileInterface(self):
-        root = tk.Tk()
-        root.geometry('+0+0')
-        root.wm_attributes('-topmost', 1)
-        root.title('Export file')
-        entry = tk.Entry(root, bd=5)
-        entry.pack()
-        self.entry = entry
-        button_1 = tk.Button(root, text='Export', command=lambda: self.outputFile(self.entry))
-        button_1.pack()
-        button_2 = tk.Button(root, text='Back', command=lambda: [root.destroy()])
-        button_2.pack()
-        root.mainloop()'''
 
     def warningInterface(self):
         root = tk.Tk()
@@ -291,7 +249,7 @@ class UserInterface(object):
 
         # process student list file
         self.restList = deque(ScanFile(currentRoster, True))
-
+        
         # check that it read the file correctly
         if self.restList.popleft() == "E":
             FileError("Error Reading Current Student List", "Please Import New Student List")
@@ -305,7 +263,6 @@ class UserInterface(object):
             heappush(self.studentQueue, [0, name])
             self.infoMap[name] = student
             self.restList.remove(student)
-
         # add 4 students to the display list
         for i in range(4):
             self.nameList.append(heappop(self.studentQueue))
