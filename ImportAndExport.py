@@ -53,7 +53,7 @@ def ImportFile():
     scanRes = ScanFile(f, False)
 
     if scanRes[0] != 0:
-        FileError(scanRes[1], 'Improper File Format. Select Another File', ImportFile)
+        FileError(scanRes[1], 'Improper File Format. Please fix error indicated in window title.', ImportFile)
 
     newFile = open("CurrentRoster.txt", "w")
 
@@ -171,10 +171,9 @@ def ExportFile():
     copyFile.close()
     currentRoster.close()
 
-# TODO: MOVE TO OTHER MODULE
 def FileError(error, buttonMessage, func=None):
     message_window = tk.Tk()
-    message_window.geometry("500x50+500+500")
+    message_window.geometry("700x50+500+700")
     message_window.title(f"Error: {error}")
     if func != None:
         back_button = tk.Button(message_window, text=buttonMessage, command=lambda: [message_window.destroy(), func])

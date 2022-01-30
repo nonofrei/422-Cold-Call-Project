@@ -221,7 +221,7 @@ class UserInterface(object):
         root.geometry('+0+0')
         root.wm_attributes('-topmost', 1)
         root.title('Warning')
-        theLabel = tk.Label(root, fg='red', text='Warning! Already existing students data, do you want to cover it?')
+        theLabel = tk.Label(root, fg='red', text='Warning! Preexisting student data, do you want to overwrite it?')
         theLabel.pack()
         button_1 = tk.Button(root, text='Continue',
                              command=lambda: [root.destroy(), self.confirmInput()])
